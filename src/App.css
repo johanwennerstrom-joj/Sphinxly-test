@@ -30,6 +30,18 @@ main {
     align-items: center;
     flex-direction: column;
 }
+.loading__wrap {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loading {
+    animation: pulse 8s infinite;
+    padding: 2rem;
+    border-radius: 0.2rem;
+}
 
 h2 {
     font-size: 4rem;
@@ -68,18 +80,6 @@ img {
     border-radius: 2rem;
     box-shadow: 0.6rem 0.6rem 2.8rem #aab0ff;
     opacity: 0.8;
-}
-.loading__wrap {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.loading {
-    animation: pulse 8s infinite;
-    padding: 2rem;
-    border-radius: 0.2rem;
 }
 
 @keyframes pulse {

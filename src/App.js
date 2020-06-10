@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
 import './app.css'
 
-const App = (e) => {
+const App = () => {
     const [ref, setRef] = useState('')
     const [name, setName] = useState()
     const [clicked, setClicked] = useState(false)
+    const [display, setDisplay] = useState(true)
+    const [greet, setGreet] = useState('')
     const input = useRef(null)
 
     const math = Math.floor(Math.random() * 30)
@@ -15,11 +17,21 @@ const App = (e) => {
         )
         response.json().then((res) => setRef(res.download_url))
     }
+    const timeoutDisplay = () => {
+        const timer = setTimeout(() => {
+            setDisplay(!display)
+        }, 4000)
+        return () => clearTimeout(timer)
+    }
 
     useEffect(() => {
         getImg()
         localStorage.setItem('prevVisitors', ['Hejpa', 'Dejpa'])
         setName(localStorage.getItem('presetName'))
+        if (localStorage.presetName) {
+            timeoutDisplay()
+            setGreet('back')
+        }
     }, [])
 
     const handleChange = () => {
@@ -28,6 +40,7 @@ const App = (e) => {
     const handleClick = () => {
         setClicked(!clicked)
         localStorage.setItem('presetName', name)
+        timeoutDisplay()
     }
 
     return (
@@ -62,11 +75,13 @@ const App = (e) => {
                     </div>
 
                     <div className="bottom__section">
-                        <h2>
-                            {localStorage.presetName || clicked
-                                ? `Welcome back ${name}! 😊`
-                                : null}
-                        </h2>
+                        {!display ? null : (
+                            <h2>
+                                {localStorage.presetName || clicked
+                                    ? `Welcome ${greet} ${name}! 😊`
+                                    : null}
+                            </h2>
+                        )}
                     </div>
                 </main>
             )}
