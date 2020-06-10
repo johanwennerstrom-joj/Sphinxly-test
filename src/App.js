@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import './app.css'
+import './main.css'
 
 const App = () => {
     const [ref, setRef] = useState('')
