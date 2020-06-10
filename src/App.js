@@ -2,21 +2,27 @@ import React, { useState, useEffect, useRef } from 'react'
 import './main.css'
 
 const App = () => {
+    //state
     const [ref, setRef] = useState('')
     const [name, setName] = useState()
     const [clicked, setClicked] = useState(false)
     const [display, setDisplay] = useState(true)
     const [greet, setGreet] = useState('')
+    // Ref hook
     const input = useRef(null)
 
+    // Math for randomizing image
     const math = Math.floor(Math.random() * 30)
 
+    // Fetch from picsum api
     const getImg = async () => {
         const response = await fetch(
             `https://cors-anywhere.herokuapp.com/https://picsum.photos/id/${math}/info/`
         )
         response.json().then((res) => setRef(res.download_url))
     }
+
+    // Timeout function to hide text after display
     const timeoutDisplay = () => {
         const timer = setTimeout(() => {
             setDisplay(!display)
@@ -24,6 +30,7 @@ const App = () => {
         return () => clearTimeout(timer)
     }
 
+    // UseEffect hook
     useEffect(() => {
         getImg()
         localStorage.setItem('prevVisitors', ['Hejpa', 'Dejpa'])
@@ -34,6 +41,7 @@ const App = () => {
         }
     }, [])
 
+    // Click and change handler to process input and click
     const handleChange = () => {
         setName(input.current.value)
     }
@@ -43,6 +51,7 @@ const App = () => {
         timeoutDisplay()
     }
 
+    // JSX
     return (
         <div className="App">
             {!ref ? (

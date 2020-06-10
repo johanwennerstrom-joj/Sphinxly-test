@@ -1,5 +1,6 @@
 @import url('<link href="https://fonts.googleapis.com/css2?family=Raleway:ital@1&display=swap" rel="stylesheet">');
 
+/* General styles */
 * {
     font-family: 'Raleway', sans-serif;
     color: #fff7f7;
@@ -16,6 +17,8 @@ main {
     height: 100%;
     width: 100%;
 }
+
+/* Class selectors */
 .top__section,
 .middle__section,
 .bottom__section {
@@ -42,6 +45,8 @@ main {
     padding: 2rem;
     border-radius: 0.2rem;
 }
+
+/* Tag selectors */
 
 h2 {
     font-size: 4rem;
@@ -82,6 +87,7 @@ img {
     opacity: 0.8;
 }
 
+/* Animation */
 @keyframes pulse {
     0% {
         border-bottom: 0.3rem solid #656ab4;
